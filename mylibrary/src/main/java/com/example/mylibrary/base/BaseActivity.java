@@ -1,6 +1,7 @@
 package com.example.mylibrary.base;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,9 +30,10 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void addPresenter() {
         Type genericSuperclass = this.getClass().getGenericSuperclass();
         Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
-        Type type = actualTypeArguments[0];
+        Class type = (Class) actualTypeArguments[0];
         try {
-            mPresenter = (P) type.getClass().newInstance();
+            Log.e("TAG", "addPresenter:");
+            mPresenter = (P) type.newInstance();
             mPresenter.addView(this);
         } catch (IllegalAccessException e) {
             e.printStackTrace();

@@ -13,10 +13,10 @@ import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface ApiService {
-     String BASEURL="https://cdwan.cn/api/";
+     String BASEURL="https://cdwan.cn/api/index";
 
     @GET
-    Observable<ResponseBody> get(@Url String url);
+    Observable<ResponseBody> get();
 
     @GET
     Observable<ResponseBody> get(@Url String url,@QueryMap Map map);

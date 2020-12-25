@@ -2,6 +2,7 @@ package com.example.mylibrary.utils;
 
 import com.example.mylibrary.api.ApiService;
 import com.example.mylibrary.api.ICallBack;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -14,6 +15,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class RetrofitHelper {
@@ -33,12 +35,12 @@ public  class RetrofitHelper {
     private RetrofitHelper(){
         apiService = new Retrofit.Builder()
                 .baseUrl(ApiService.BASEURL)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
                 .create(ApiService.class);
     }
     public <T> void get(String url,ICallBack<T> callBack){
-        apiService.get(url)
+        apiService.get()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<ResponseBody>() {
@@ -54,9 +56,8 @@ public  class RetrofitHelper {
                             Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();
                             ParameterizedType genericInterface = (ParameterizedType) genericInterfaces[0];
                             Type[] types = genericInterface.getActualTypeArguments();
-                            T bean= (T) types[0];
+                            T bean = new Gson().fromJson(json, types[0]);
                             callBack.success(bean);
-
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
