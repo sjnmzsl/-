@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
+import com.bumptech.glide.Glide;
 import com.example.yanxuan.R;
 import com.example.yanxuan.bean.HomeBean;
 import com.youth.banner.Banner;
@@ -24,7 +25,6 @@ public class BannerAdapter extends DelegateAdapter.Adapter<BannerAdapter.ViewHol
     private Activity activity;
     private LayoutHelper layoutHelper;
     private ArrayList<HomeBean.DataDTO.BannerDTO> list;
-    private Banner bannerItem;
 
     public BannerAdapter(Activity activity, LayoutHelper layoutHelper, ArrayList<HomeBean.DataDTO.BannerDTO> list) {
         this.activity = activity;
@@ -46,14 +46,18 @@ public class BannerAdapter extends DelegateAdapter.Adapter<BannerAdapter.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.banner.setImages(list)
-                .setImageLoader(new ImageLoader() {
-                    @Override
-                    public void displayImage(Context context, Object path, ImageView imageView) {
-
-                    }
-                })
-                .start();
+        if (list.size()!=0){
+            HomeBean.DataDTO.BannerDTO bannerDTO = list.get(0);
+            holder.banner.setImages(list)
+                    .setImageLoader(new ImageLoader() {
+                        @Override
+                        public void displayImage(Context context, Object path, ImageView imageView) {
+                            HomeBean.DataDTO.BannerDTO bean= (HomeBean.DataDTO.BannerDTO) path;
+                            Glide.with(context).load(bean.getImage_url()).into(imageView);
+                        }
+                    })
+                    .start();
+        }
     }
 
     @Override
@@ -69,9 +73,8 @@ public class BannerAdapter extends DelegateAdapter.Adapter<BannerAdapter.ViewHol
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-        }
-        private void initView() {
             banner = (Banner) itemView.findViewById(R.id.banner_item);
         }
+
     }
 }

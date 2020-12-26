@@ -1,5 +1,7 @@
 package com.example.mylibrary.utils;
 
+import android.util.Log;
+
 import com.example.mylibrary.api.ApiService;
 import com.example.mylibrary.api.ICallBack;
 import com.google.gson.Gson;
@@ -40,7 +42,7 @@ public  class RetrofitHelper {
                 .create(ApiService.class);
     }
     public <T> void get(String url,ICallBack<T> callBack){
-        apiService.get()
+        apiService.get(url)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<ResponseBody>() {
@@ -54,9 +56,12 @@ public  class RetrofitHelper {
                         try {
                             String json = responseBody.string();
                             Type[] genericInterfaces = callBack.getClass().getGenericInterfaces();
-                            ParameterizedType genericInterface = (ParameterizedType) genericInterfaces[0];
-                            Type[] types = genericInterface.getActualTypeArguments();
-                            T bean = new Gson().fromJson(json, types[0]);
+
+                            Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
+                            Type type= actualTypeArguments[0];
+                            Log.e("TAG", "onNext: "+json);
+                            Log.e("TAG", "type: "+type);
+                            T bean = new Gson().fromJson(json, type);
                             callBack.success(bean);
                         } catch (IOException e) {
                             e.printStackTrace();

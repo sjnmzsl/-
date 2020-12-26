@@ -4,11 +4,12 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.youth.banner.Banner
+    <EditText
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:id="@+id/banner_item"
+        android:layout_height="wrap_content"
+        android:id="@+id/ed_search"
         app:layout_constraintTop_toTopOf="parent"
+        android:gravity="center"
+        android:text="商品搜索,共239款好物"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

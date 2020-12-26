@@ -17,21 +17,19 @@ public abstract class BasePresenter<V extends BaseActivity,M extends BaseModel> 
         mView=view;
     }
 
-    public BasePresenter() {
-        Type genericSuperclass = this.getClass().getGenericSuperclass();
-        Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
-        Class actualTypeArgument = (Class) actualTypeArguments[1];
-        try {
-            mModel = (M) actualTypeArgument.newInstance();
-            Log.e("TAG", "BasePresenter: "+mModel.toString());
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
-
-
-    }
+//    public BasePresenter() {
+//        Type genericSuperclass = this.getClass().getGenericSuperclass();
+//        Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
+//        Class actualTypeArgument = (Class) actualTypeArguments[1];
+//        try {
+//            mModel = (M) actualTypeArgument.newInstance();
+//            Log.e("TAG", "BasePresenter: "+mModel.toString());
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        } catch (InstantiationException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     public abstract void get(String url);
 
