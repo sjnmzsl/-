@@ -3,11 +3,25 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('D:\\Code\\YanXuan\\app\\qm.jks')
+            storePassword '123456'
+            keyAlias 'qm'
+            keyPassword '123456'
+        }
+        debug {
+            storeFile file('D:\\Code\\YanXuan\\app\\qm.jks')
+            storePassword '123456'
+            keyAlias 'qm'
+            keyPassword '123456'
+        }
+    }
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.example.yanxuan"
+        applicationId "com.example.yanx"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1

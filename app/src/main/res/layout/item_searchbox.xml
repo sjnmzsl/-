@@ -10,6 +10,6 @@
         android:id="@+id/ed_search"
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center"
-        android:text="商品搜索,共239款好物"
+        android:hint="商品搜索,共239款好物"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
