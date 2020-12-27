@@ -27,4 +27,9 @@ public abstract class BaseDelegateAdapter<T> extends DelegateAdapter.Adapter<Rec
     public LayoutHelper onCreateLayoutHelper() {
         return layoutHelper;
     }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
 }

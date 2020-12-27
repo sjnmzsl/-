@@ -22,10 +22,12 @@ import com.example.mylibrary.base.BaseActivity;
 import com.example.yanx.R;
 import com.example.yanx.adapter.BannerAdapter;
 import com.example.yanx.adapter.BrandListDTOAdapter;
+import com.example.yanx.adapter.CategoryListDTOAdapter;
 import com.example.yanx.adapter.ChannelDTOAdapter;
 import com.example.yanx.adapter.HotGoodsListDTOAdapter;
 import com.example.yanx.adapter.NewGoodsListDTOAdapter;
 import com.example.yanx.adapter.TitleAdapter;
+import com.example.yanx.adapter.TopicListDTOAdapter;
 import com.example.yanx.bean.HomeBean;
 import com.example.yanx.presenter.HomePresenter;
 
@@ -47,10 +49,16 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
     private TitleAdapter titleAdapter;
     private ArrayList<HomeBean.DataDTO.NewGoodsListDTO> newGoodsListDTOs;
     private NewGoodsListDTOAdapter newGoodsListDTOAdapter;
-    private TitleAdapter title1Adapter;
+    private TitleAdapter titleAdapter1;
     private TitleAdapter 品牌制造商直供;
     private ArrayList<HomeBean.DataDTO.HotGoodsListDTO> hotGoodsListDTOs;
     private HotGoodsListDTOAdapter hotGoodsListDTOAdapter;
+    private TitleAdapter titleAdapter2;
+    private ArrayList<HomeBean.DataDTO.TopicListDTO> topicListDTOs;
+    private TopicListDTOAdapter topicListDTOAdapter;
+    private TitleAdapter titleAdapter3;
+    private ArrayList<HomeBean.DataDTO.CategoryListDTO> categoryListDTOs;
+    private CategoryListDTOAdapter categoryListDTOAdapter;
 
 
     @Override
@@ -67,7 +75,6 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
 
         VirtualLayoutManager layoutManager = new VirtualLayoutManager(this);
 
-
         recyHoem.setLayoutManager(layoutManager);
 
         //设置回收池
@@ -80,9 +87,14 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
         setChannelDTOAdapter(); //小图标
         titleAdapter = setSingleAdapter("品牌制造商直供");
         setBrandListDTOAdapter(); //制造商
-        title1Adapter = setSingleAdapter("周一周四，新品首发");
+        titleAdapter1 = setSingleAdapter("周一周四，新品首发");
         setNewGoodsListDTOAdapter(); //新品页面
+        titleAdapter2 = setSingleAdapter("人气推荐");
         setHotGoodsListDTOAdapter();
+        titleAdapter3 = setSingleAdapter("专题精选");
+        setTopicListDTOAdapter();
+        setCategoryListDTOAdapter();
+
 
 
         //添加适配器
@@ -93,15 +105,34 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
         delegateAdapter.addAdapter(channelDTOAdapter);
         delegateAdapter.addAdapter(titleAdapter);
         delegateAdapter.addAdapter(brandListDTOAdapter);
-        delegateAdapter.addAdapter(title1Adapter);
+        delegateAdapter.addAdapter(titleAdapter1);
         delegateAdapter.addAdapter(newGoodsListDTOAdapter);
+        delegateAdapter.addAdapter(titleAdapter2);
         delegateAdapter.addAdapter(hotGoodsListDTOAdapter);
+        delegateAdapter.addAdapter(titleAdapter3);
+        delegateAdapter.addAdapter(topicListDTOAdapter);
+        delegateAdapter.addAdapter(categoryListDTOAdapter);
         recyHoem.setAdapter(delegateAdapter);
+    }
+
+    private void setCategoryListDTOAdapter() {
+        LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
+        linearLayoutHelper.setMargin(0,10,0,0);
+        categoryListDTOs = new ArrayList<>();
+        categoryListDTOAdapter = new CategoryListDTOAdapter(this, linearLayoutHelper, categoryListDTOs);
+    }
+
+    private void setTopicListDTOAdapter() {
+        SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
+        singleLayoutHelper.setBgColor(Color.WHITE);
+        topicListDTOs = new ArrayList<>();
+        topicListDTOAdapter = new TopicListDTOAdapter(this, singleLayoutHelper, topicListDTOs);
     }
 
     private void setHotGoodsListDTOAdapter() {
         LinearLayoutHelper linearLayoutHelper = new LinearLayoutHelper();
-        linearLayoutHelper.setMargin(0,20,0,20);
+        linearLayoutHelper.setBgColor(Color.WHITE);
+//        linearLayoutHelper.setMargin(0,0,0,10);
         hotGoodsListDTOs = new ArrayList<>();
         hotGoodsListDTOAdapter = new HotGoodsListDTOAdapter(this,linearLayoutHelper,hotGoodsListDTOs);
     }
@@ -115,7 +146,8 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
 
     private TitleAdapter setSingleAdapter(String st) {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
-        singleLayoutHelper.setMargin(0,10,0,10);
+        singleLayoutHelper.setBgColor(Color.WHITE);
+        singleLayoutHelper.setMargin(0,10,0,0);
         ArrayList<String> titles = new ArrayList<>();
         titles.add(st);
         return new TitleAdapter(this,singleLayoutHelper,titles);
@@ -142,13 +174,14 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
     }
 
     private void setChannelDTOAdapter() {
-        int range=20;
         ColumnLayoutHelper columnLayoutHelper = new ColumnLayoutHelper();
+        columnLayoutHelper.setBgColor(Color.WHITE);
         columnLayoutHelper.setItemCount(5);
-        columnLayoutHelper.setMargin(range,5,range,0);
-        columnLayoutHelper.setPadding(range,range,range,0);
+        columnLayoutHelper.setPadding(10,0,10,0);
+//        columnLayoutHelper.setMargin(0,0,0,15);
+
 //        columnLayoutHelper.setAspectRatio(6);
-        columnLayoutHelper.setWeights(new float[]{20,20,20,20,20});
+        columnLayoutHelper.setWeights(new float[]{22,22,22,22,22});
         ChannelDTOs = new ArrayList<>();
         channelDTOAdapter = new ChannelDTOAdapter(this, columnLayoutHelper, ChannelDTOs);
     }
@@ -156,6 +189,7 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
     private void setSearchBoxAdapter() {
         SingleLayoutHelper singleLayoutHelper = new SingleLayoutHelper();
         singleLayoutHelper.setItemCount(1);
+        singleLayoutHelper.setBgColor(Color.WHITE);
         searchBoxAdapter = new DelegateAdapter.Adapter() {
             @Override
             public LayoutHelper onCreateLayoutHelper() {
@@ -240,6 +274,11 @@ public class HomeActivity extends BaseActivity<HomePresenter> {
         hotGoodsListDTOAdapter.notifyDataSetChanged();
 
 
+        topicListDTOs.addAll(data.getTopicList());
+        topicListDTOAdapter.notifyDataSetChanged();
+
+        categoryListDTOs.addAll(data.getCategoryList());
+        categoryListDTOAdapter.notifyDataSetChanged();
 
         delegateAdapter.notifyDataSetChanged();
 
