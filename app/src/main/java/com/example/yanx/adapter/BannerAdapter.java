@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.yanx.R;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.LayoutHelper;
 import com.bumptech.glide.Glide;
-import com.example.yanx.R;
+
 import com.example.yanx.bean.HomeBean;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
