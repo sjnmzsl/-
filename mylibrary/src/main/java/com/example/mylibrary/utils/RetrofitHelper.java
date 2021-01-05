@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -59,8 +61,6 @@ public  class RetrofitHelper {
 
                             Type[] actualTypeArguments = ((ParameterizedType) genericInterfaces[0]).getActualTypeArguments();
                             Type type= actualTypeArguments[0];
-                            Log.e("TAG", "onNext: "+json);
-                            Log.e("TAG", "type: "+type);
                             T bean = new Gson().fromJson(json, type);
                             callBack.success(bean);
                         } catch (IOException e) {
@@ -71,6 +71,50 @@ public  class RetrofitHelper {
                     @Override
                     public void onError(@NonNull Throwable e) {
 
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public <T> void postLogin(Map<String,String> heads,String url,Map<String,String> map,ICallBack<T> icallBack){
+        if (heads==null){
+            heads=new HashMap<>();
+        }
+        if (map==null){
+            map=new HashMap<>();
+        }
+        apiService.post(heads,url,map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBody>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(@NonNull ResponseBody responseBody) {
+                        Type[] interfaces = icallBack.getClass().getGenericInterfaces();
+                        Type[] typeArguments = ((ParameterizedType) interfaces[0]).getActualTypeArguments();
+                        Type type = typeArguments[0];
+                        try {
+                            String json = responseBody.string();
+                            T bean = new Gson().fromJson(json, type);
+                            icallBack.success(bean);
+                            Log.e("TAG", "解析成功");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        icallBack.failure("解析失败"+e.getMessage());
+                        Log.e("TAG", "解析失败"+e.getMessage() );
                     }
 
                     @Override

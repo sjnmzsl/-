@@ -3,15 +3,18 @@ package com.example.mylibrary.base;
 import android.os.Bundle;
 import android.util.Log;
 
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.mylibrary.api.ICallBack;
+
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements ICallBack {
+
+
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity  implements BaseView{
     protected P mPresenter;
 
     @Override
@@ -23,16 +26,19 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         initData();
     }
 
+    protected abstract int getLayout();
+
     protected abstract void initData();
 
     protected abstract void initView();
 
     protected void addPresenter() {
         Type genericSuperclass = this.getClass().getGenericSuperclass();
+        Log.e("aaa", genericSuperclass+"");
+
         Type[] actualTypeArguments = ((ParameterizedType) genericSuperclass).getActualTypeArguments();
         Class type = (Class) actualTypeArguments[0];
         try {
-            Log.e("TAG", "addPresenter:");
             mPresenter = (P) type.newInstance();
             mPresenter.addView(this);
         } catch (IllegalAccessException e) {
@@ -41,6 +47,4 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             e.printStackTrace();
         }
     }
-
-    protected abstract int getLayout();
 }

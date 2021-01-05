@@ -5,13 +5,13 @@ plugins {
 android {
     signingConfigs {
         release {
-            storeFile file('D:\\Code\\YanXuan\\app\\qm.jks')
+            storeFile file('D:\\Code\\mofang\\YanXuan\\app\\qm.jks')
             storePassword '123456'
             keyAlias 'qm'
             keyPassword '123456'
         }
         debug {
-            storeFile file('D:\\Code\\YanXuan\\app\\qm.jks')
+            storeFile file('D:\\Code\\mofang\\YanXuan\\app\\qm.jks')
             storePassword '123456'
             keyAlias 'qm'
             keyPassword '123456'
@@ -49,6 +49,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation project(path: ':mylibrary')
     implementation 'androidx.wear:wear:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
 
     testImplementation 'junit:junit:4.+'
@@ -59,6 +60,8 @@ dependencies {
         transitive = true
     }
 
+    //mmkv
+    implementation 'com.tencent:mmkv-static:1.2.7'
 
 
     //Glide 4.x
