@@ -70,7 +70,7 @@ public  class RetrofitHelper {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-
+                        callBack.failure(e.getMessage());
                     }
 
                     @Override
@@ -113,8 +113,7 @@ public  class RetrofitHelper {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
-                        icallBack.failure("解析失败"+e.getMessage());
-                        Log.e("TAG", "解析失败"+e.getMessage() );
+                        icallBack.failure(e.getMessage());
                     }
 
                     @Override

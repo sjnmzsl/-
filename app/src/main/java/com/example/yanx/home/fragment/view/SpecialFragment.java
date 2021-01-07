@@ -39,7 +39,39 @@ public class SpecialFragment extends BaseFragment<SpecialFraPresenter> implement
     private DelegateAdapter delegateAdapter;
     private ArrayList<SpecialBean.DataDTO.DataDT> list;
     private SpecialRecyAdapter specialRecyAdapter;
+    private int page;
 
+
+
+    public void setItemListener(){
+        specialRecyAdapter.setOnClickItemListener(new SpecialRecyAdapter.OnClickItemListener() {
+            @Override
+            public void topPage() {
+
+
+                --page;
+                if (page==1){
+                    page=1;
+                    specialRecyAdapter.setTopPageState();
+                }
+
+//                //如果上一页是第一页，那么不刷新
+//                if (page==0){
+//                    page=1;
+//                    specialRecyAdapter.setTopPageState();
+//                    return;
+//                }
+                list.clear();
+                initData();
+            }
+
+            @Override
+            public void down() {
+                page++;
+                initData();
+            }
+        });
+    }
 
     @Override
     protected int getLayouId() {
@@ -48,7 +80,7 @@ public class SpecialFragment extends BaseFragment<SpecialFraPresenter> implement
 
     @Override
     protected void initData() {
-        mPresenter.get("topic/list?page=1&size=10");
+        mPresenter.get("topic/list?page="+page+"&size=10");
     }
 
     @Override
@@ -71,13 +103,20 @@ public class SpecialFragment extends BaseFragment<SpecialFraPresenter> implement
         delegateAdapter.addAdapter(specialRecyAdapter);
         recySpecial.setAdapter(delegateAdapter);
 
+
+        setItemListener();
+
     }
 
 
     @Override
     public void getSuccess(SpecialBean bean) {
+        page=bean.getData().getCurrentPage();
+
         list.addAll(bean.getData().getData());
         specialRecyAdapter.notifyDataSetChanged();
+
+
     }
 
     @Override

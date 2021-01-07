@@ -36,33 +36,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
         return view;
     }
 
-    public static Object  ob = new Object();
+
 
     private  void addPresenter() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                synchronized (ob){
-                    add();
-                }
-            }
-        }).start();
-    }
-
-    private synchronized void add() {
         Type genType = BaseFragment.this.getClass().getGenericSuperclass();
         Log.e("aaa", genType+"");
-//        String name = genType.getClass().getName();
-//        Log.e("bbc", "名"+name);
-//        String name1 = genType.getClass().getTypeName();
-//        Log.e("bbc", "类型名"+name1);
-//        String name2 = genType.getClass().getSimpleName();
-//        Log.e("bbc", "Simple名"+name2);
-//        String name3 = genType.getClass().getCanonicalName();
-//        Log.e("bbc", "Canonical名"+name3);
-
-
-
 
         ParameterizedType parameterizedType = (ParameterizedType) genType;
         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
@@ -77,6 +55,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
             e.printStackTrace();
         }
     }
+
+
 
     protected abstract int getLayouId();
 

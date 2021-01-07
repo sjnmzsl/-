@@ -8,10 +8,12 @@ import android.widget.RadioGroup;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.Lifecycle;
 
 import com.example.mylibrary.base.BaseActivity;
 import com.example.yanx.R;
 import com.example.yanx.home.fragment.presenter.HomeFraPresenter;
+import com.example.yanx.home.fragment.view.DirectoryFragment;
 import com.example.yanx.home.fragment.view.HomeFragment;
 import com.example.yanx.home.fragment.view.SpecialFragment;
 
@@ -29,17 +31,22 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
     private HomeFragment homeFragment;
     private SpecialFragment specialFragment;
     private FragmentManager fragmentManager;
+    private DirectoryFragment directoryFragment;
 
     @Override
     protected void initData() {
         homeFragment = new HomeFragment();
         specialFragment = new SpecialFragment();
         fragmentManager = getSupportFragmentManager();
+        directoryFragment = new DirectoryFragment();
         fragmentManager.beginTransaction()
                 .add(R.id.fralayout_Home,homeFragment)
                 .add(R.id.fralayout_Home,specialFragment)
+                .add(R.id.fralayout_Home,directoryFragment)
+                .setMaxLifecycle(directoryFragment, Lifecycle.State.CREATED)
                 .show(homeFragment)
                 .hide(specialFragment)
+                .hide(directoryFragment)
                 .commit();
 
     }
@@ -53,7 +60,7 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
         rbgroup = (RadioGroup) findViewById(R.id.rbgroup_HomeFra);
         rbHomeFra = (RadioButton) findViewById(R.id.rb_HomeFra);
         rbSpecial = (RadioButton) findViewById(R.id.rb_special);
-        rbInfo = (RadioButton) findViewById(R.id.rb_info);
+        rbInfo = (RadioButton) findViewById(R.id.rb_directroy);
         rbShoppingCart = (RadioButton) findViewById(R.id.rb_ShoppingCart);
         rbMy = (RadioButton) findViewById(R.id.rb_my);
 
@@ -76,19 +83,26 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
                 fragmentManager.beginTransaction()
                         .show(homeFragment)
                         .hide(specialFragment)
+                        .hide(directoryFragment)
                         .commit();
                 break;
             case R.id.rb_special:
                 fragmentManager.beginTransaction()
                         .hide(homeFragment)
                         .show(specialFragment)
+                        .hide(directoryFragment)
                         .commit();
                 break;
             case R.id.rb_ShoppingCart:
 
                 break;
-            case R.id.rb_info:
-
+            case R.id.rb_directroy:
+                fragmentManager.beginTransaction()
+                        .hide(homeFragment)
+                        .hide(specialFragment)
+                        .show(directoryFragment)
+                        .setMaxLifecycle(directoryFragment, Lifecycle.State.RESUMED)
+                        .commit();
                 break;
             case R.id.rb_my:
 
