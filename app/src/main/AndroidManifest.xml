@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.YanXuan">
-        <activity android:name=".start.view.StartPageActivity">
+        <activity android:name=".mvp.BuyShopping.BuyShoppingActivity"></activity>
+        <activity android:name=".mvp.details.DetailsActivity" />
+        <activity android:name=".mvp.start.view.StartPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.view.LoginActivity">
-
-        </activity>
+        <activity android:name=".mvp.login.view.LoginActivity" />
         <activity
-            android:name=".home.view.WebActivity"
+            android:name=".mvp.home.activity.WebActivity"
             android:label="@string/title_activity_web" />
-        <activity android:name=".home.view.HomeActivity"></activity>
+        <activity android:name=".mvp.home.activity.HomeActivity" />
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import java.util.concurrent.locks.Lock;
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView{
     protected P mPresenter;
     protected View view;
+    protected String TAG="TAG";
 
     @Override
     public  void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +41,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
 
     private  void addPresenter() {
         Type genType = BaseFragment.this.getClass().getGenericSuperclass();
-        Log.e("aaa", genType+"");
 
         ParameterizedType parameterizedType = (ParameterizedType) genType;
         Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();

@@ -16,6 +16,7 @@ import java.lang.reflect.Type;
 
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity  implements BaseView{
     protected P mPresenter;
+    protected String TAG=getClass().getName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

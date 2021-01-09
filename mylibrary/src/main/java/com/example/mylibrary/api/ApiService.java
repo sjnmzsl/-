@@ -19,6 +19,7 @@ import retrofit2.http.Url;
 public interface ApiService {
      String BASEURL="https://cdplay.cn/api/";
 //    https://cdplay.cn/api/auth/login
+//    https://cdwan.cn/api/cart/index
 
     @GET()
     Observable<ResponseBody> get(@Url String url);

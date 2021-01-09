@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="230dp"
         android:id="@+id/ima_special"
         android:scaleType="centerCrop"

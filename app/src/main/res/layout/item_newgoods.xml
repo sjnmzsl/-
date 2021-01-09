@@ -8,14 +8,12 @@
 
 
     <ImageView
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="230dp"
         android:id="@+id/ima_newgoods"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         />
     <TextView
         android:layout_width="wrap_content"
@@ -31,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_price_newgoods"
+        android:id="@+id/tv_price_buyShopping"
         app:layout_constraintTop_toBottomOf="@id/tv_name_newgoods"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.view.HomeActivity"
+    tools:context=".mvp.home.activity.HomeActivity"
     android:fitsSystemWindows="true">
 
     <androidx.appcompat.widget.Toolbar
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:layout_weight="1"
-            android:id="@+id/rb_ShoppingCart"
+            android:id="@+id/rb_Cart"
             android:text="购物车"
             android:gravity="center"
 

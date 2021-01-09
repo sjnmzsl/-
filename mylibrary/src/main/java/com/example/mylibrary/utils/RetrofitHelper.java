@@ -80,7 +80,7 @@ public  class RetrofitHelper {
                 });
     }
 
-    public <T> void postLogin(Map<String,String> heads,String url,Map<String,String> map,ICallBack<T> icallBack){
+    public <T> void post(Map<String,String> heads, String url, Map<String,String> map, ICallBack<T> icallBack){
         if (heads==null){
             heads=new HashMap<>();
         }

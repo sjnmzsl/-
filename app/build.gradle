@@ -1,7 +1,7 @@
 plugins {
     id 'com.android.application'
 }
-
+apply plugin: 'org.greenrobot.greendao' // apply plugin
 android {
     signingConfigs {
         release {
@@ -39,6 +39,12 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    greendao{
+        schemaVersion 1 //数据库版本号
+        daoPackage 'com.example.yanx.dao'  //数据库全路径
+        targetGenDir 'src/main/java'  //存放位置
     }
 }
 
@@ -81,4 +87,6 @@ dependencies {
 
     //垂直tab
     implementation 'q.rorbin:VerticalTabLayout:1.2.5'
+
+    implementation 'org.greenrobot:greendao:3.2.2' // add library
 }

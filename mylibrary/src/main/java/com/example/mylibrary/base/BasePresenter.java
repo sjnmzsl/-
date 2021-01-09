@@ -6,6 +6,7 @@ import com.example.mylibrary.api.ICallBack;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 
 import retrofit2.http.GET;
 import retrofit2.http.Url;
@@ -30,5 +31,7 @@ public abstract class BasePresenter<V extends BaseView,M extends BaseModel> {
         }
 
     }
+
+
 
 }

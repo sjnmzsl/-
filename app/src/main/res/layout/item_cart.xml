@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/cb_option"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ima_head_cart"
+        app:layout_constraintBottom_toBottomOf="@id/ima_head_cart"
+        android:visibility="gone"
+        />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ima_head_cart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cb_option"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_title_cart"
+        app:layout_constraintTop_toTopOf="@id/ima_head_cart"
+        app:layout_constraintLeft_toRightOf="@id/ima_head_cart"
+        android:layout_margin="5dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_pric_cart"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_cart"
+        app:layout_constraintBottom_toBottomOf="@id/ima_head_cart"
+        app:layout_constraintLeft_toLeftOf="@id/tv_title_cart"
+        android:layout_marginBottom="5dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_count_cart"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="20dp"
+        android:text="X1"
+        android:textSize="23dp"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/vt_cart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/tv_add"
+            android:background="@drawable/bg_black_frame"
+            android:text="-"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/tv_count"
+            android:text="1"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:background="@drawable/bg_black_frame"
+            />
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/tv_remove"
+            android:background="@drawable/bg_black_frame"
+            android:text="+"
+            android:textSize="20dp"
+            android:gravity="center"
+            />
+    </LinearLayout>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
