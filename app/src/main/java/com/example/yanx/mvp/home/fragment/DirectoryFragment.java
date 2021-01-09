@@ -3,7 +3,6 @@ package com.example.yanx.mvp.home.fragment;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +15,7 @@ import com.example.yanx.R;
 import com.example.yanx.bean.DirectroyDataBean;
 import com.example.yanx.bean.DirectroyBean;
 import com.example.yanx.adapter.DirectroyRecyAdapter;
-import com.example.yanx.contract.DirectroyContract;
+import com.example.yanx.contract.BaseContract;
 import com.example.yanx.mvp.home.presenter.DirectroyPresenter;
 import com.example.yanx.mvp.home.activity.HomeActivity;
 
@@ -28,7 +27,8 @@ import q.rorbin.verticaltablayout.widget.ITabView;
 import q.rorbin.verticaltablayout.widget.QTabView;
 import q.rorbin.verticaltablayout.widget.TabView;
 
-public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implements DirectroyContract.IDirectroyView {
+public class DirectoryFragment extends BaseFragment<DirectroyPresenter>
+        implements BaseContract.IView<DirectroyBean> {
 
 
     private EditText edSearch;
@@ -49,8 +49,8 @@ public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implemen
 
     @Override
     protected void initData() {
-        mPresenter.getDirectroy();
-        mPresenter.getData("catalog/current?id="+pageId);
+        mPresenter.post(null,null,null);
+        mPresenter.get("catalog/current?id="+pageId);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implemen
 
 
 
-    @Override
+
     public void getData(DirectroyDataBean bean) {
         dataList.clear();
         dataList.addAll(bean.getData().getCurrentCategory().getSubCategoryList());
@@ -101,8 +101,9 @@ public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implemen
         super.onResume();
     }
 
+
     @Override
-    public void getDirectroy(DirectroyBean bean) {
+    public void getSuccess(DirectroyBean bean) {
         List<DirectroyBean.DataDTO.CategoryListDTO> categoryList = bean.getData().getCategoryList();
 
         for (DirectroyBean.DataDTO.CategoryListDTO listDTO : categoryList) {
@@ -114,7 +115,7 @@ public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implemen
             @Override
             public void onTabSelected(TabView tab, int position) {
                 DirectroyBean.DataDTO.CategoryListDTO dto = categoryList.get(position);
-                mPresenter.getData("catalog/current?id="+dto.getId());
+                mPresenter.get("catalog/current?id="+dto.getId());
 
                 delegateAdapter.notifyDataSetChanged();
 
@@ -127,6 +128,12 @@ public class DirectoryFragment extends BaseFragment<DirectroyPresenter> implemen
 
             }
         });
+    }
+
+
+
+    @Override
+    public void getFailure(String error) {
 
     }
 }
