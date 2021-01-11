@@ -113,6 +113,7 @@ public class BuyShoppingActivity extends BaseActivity<BuyShoppingPresenter>
                 imaCollect.setSelected(!imaCollect.isSelected());
                 break;
             case R.id.tv_addCart:
+                //添加入购物车
                 HashMap<String, String> map = new HashMap<>();
                 BuyShoppingBean.DataDTO.ProductListDTO dto = productList.get(0);
                 map.put("goodsId",dto.getGoods_id()+"");
@@ -121,6 +122,7 @@ public class BuyShoppingActivity extends BaseActivity<BuyShoppingPresenter>
                 mPresenter.post(null,"cart/add",map);
                 break;
             case R.id.ima_cart:
+                //跳转至购物车页面
                 Intent intent = new Intent(this, HomeActivity.class);
                 intent.putExtra("page",3);
                 startActivity(intent);

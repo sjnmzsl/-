@@ -11,6 +11,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.LoggingMXBean;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -104,8 +105,8 @@ public  class RetrofitHelper {
                         try {
                             String json = responseBody.string();
                             T bean = new Gson().fromJson(json, type);
+
                             icallBack.success(bean);
-                            Log.e("TAG", "解析成功");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

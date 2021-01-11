@@ -4,47 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvp.login.view.LoginActivity"
-    android:layout_margin="20dp">
+    tools:context=".mvp.register.RegisterActivity">
+
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ed_name"
+        android:id="@+id/_nic"
         app:layout_constraintTop_toTopOf="parent"
-        android:hint="@string/input_name"
-        android:text="z1234"
         />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ed_pasd"
-        app:layout_constraintTop_toBottomOf="@id/ed_name"
-        android:hint="@string/input_pasd"
-        android:text="123456"
+        android:id="@+id/ed_name_register"
+        app:layout_constraintTop_toTopOf="parent"
+
         />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/cheb_rememberPasd"
-        app:layout_constraintTop_toBottomOf="@id/ed_pasd"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:text="@string/remember_passWord"
-        />
-    <Button
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bt_login"
-        app:layout_constraintTop_toBottomOf="@id/cheb_rememberPasd"
-        android:text="@string/login"
+        android:id="@+id/ed_pasd_register"
+        app:layout_constraintTop_toBottomOf="@id/ed_name_register"
         />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bt_register"
-        app:layout_constraintTop_toBottomOf="@id/bt_login"
+        app:layout_constraintTop_toBottomOf="@id/ed_pasd_register"
         android:text="注册"
         />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

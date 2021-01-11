@@ -25,14 +25,14 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cb_SelectAll_ShoppingCart"
+            android:id="@+id/cb_AllSelect_ShoppingCart"
             android:text="全选"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/tv_PriceAll_ShoppingCart"
-            android:text="￥123456"
+            android:id="@+id/tv_AllPrice_ShoppingCart"
+            android:text="￥0"
             android:layout_marginLeft="50dp"
             />
         <TextView

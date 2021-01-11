@@ -38,7 +38,6 @@ public class BuyShoppingPresenter extends BasePresenter<BuyShoppingActivity, Hom
             @Override
             public void success(AddCartBean bean) {
                 if (bean.getErrno()==0){
-
                     mView.addCartSuccess(bean);
                 }else {
                     mView.getFailure("添加至购物车失败");

@@ -13,6 +13,7 @@ import com.example.yanx.R;
 import com.example.yanx.mvp.login.LoginContrct;
 import com.example.yanx.mvp.login.presenter.LoginPresenter;
 import com.example.yanx.mvp.home.activity.HomeActivity;
+import com.example.yanx.mvp.register.RegisterActivity;
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContrct.ILoginView,View.OnClickListener {
 
@@ -20,6 +21,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private EditText edPasd;
     private CheckBox chebRememberPasd;
     private Button btLogin;
+    private Button btRegister;
 
 
     @Override
@@ -32,9 +34,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         edPasd = (EditText) findViewById(R.id.ed_pasd);
         chebRememberPasd = (CheckBox) findViewById(R.id.cheb_rememberPasd);
         btLogin = (Button) findViewById(R.id.bt_login);
+        btRegister = (Button) findViewById(R.id.bt_register);
 
         btLogin.setOnClickListener(this::onClick);
         chebRememberPasd .setOnClickListener(this::onClick);
+        btRegister.setOnClickListener(this::onClick);
     }
 
     @Override
@@ -54,8 +58,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                     mPresenter.login(name,pasd,chebRememberPasd.isChecked());
                 }
                 break;
-            case R.id.cheb_rememberPasd:
-//                chebRememberPasd.setChecked(!chebRememberPasd.isChecked());
+            case R.id.bt_register:
+                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                 break;
         }
     }

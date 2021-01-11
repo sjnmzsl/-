@@ -2,7 +2,7 @@ package com.example.yanx.bean;
 
 import java.util.List;
 
-public class ShoppingCartBean {
+public class CartBean extends Object{
 
     /**
      * errno : 0
@@ -71,45 +71,55 @@ public class ShoppingCartBean {
              * checkedGoodsAmount : 4365
              */
 
-            private Integer goodsCount;
-            private Integer goodsAmount;
-            private Integer checkedGoodsCount;
-            private Integer checkedGoodsAmount;
+            private String goodsCount;
+            private String goodsAmount;
+            private String checkedGoodsCount;
+            private String checkedGoodsAmount;
 
-            public Integer getGoodsCount() {
+            public String getGoodsCount() {
                 return goodsCount;
             }
 
-            public void setGoodsCount(Integer goodsCount) {
+            public void setGoodsCount(String goodsCount) {
                 this.goodsCount = goodsCount;
             }
 
-            public Integer getGoodsAmount() {
+            public String getGoodsAmount() {
                 return goodsAmount;
             }
 
-            public void setGoodsAmount(Integer goodsAmount) {
+            public void setGoodsAmount(String goodsAmount) {
                 this.goodsAmount = goodsAmount;
             }
 
-            public Integer getCheckedGoodsCount() {
+            public String getCheckedGoodsCount() {
                 return checkedGoodsCount;
             }
 
-            public void setCheckedGoodsCount(Integer checkedGoodsCount) {
+            public void setCheckedGoodsCount(String checkedGoodsCount) {
                 this.checkedGoodsCount = checkedGoodsCount;
             }
 
-            public Integer getCheckedGoodsAmount() {
+            public String getCheckedGoodsAmount() {
                 return checkedGoodsAmount;
             }
 
-            public void setCheckedGoodsAmount(Integer checkedGoodsAmount) {
+            public void setCheckedGoodsAmount(String checkedGoodsAmount) {
                 this.checkedGoodsAmount = checkedGoodsAmount;
             }
         }
 
         public static class CartListDTO {
+            @Override
+            public String toString() {
+                return "CartListDTO{" +
+                        "id=" + id +
+
+                        ", goods_name='" + goods_name + '\'' +
+
+                        '}';
+            }
+
             /**
              * id : 1911
              * user_id : 0
@@ -126,6 +136,7 @@ public class ShoppingCartBean {
              * checked : 0
              * list_pic_url : http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png
              */
+
 
             private Integer id;
             private Integer user_id;

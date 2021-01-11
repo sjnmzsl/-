@@ -16,7 +16,7 @@ import com.alibaba.android.vlayout.LayoutHelper;
 import com.bumptech.glide.Glide;
 import com.example.yanx.R;
 import com.example.yanx.bean.HomeBean;
-import com.example.yanx.mvp.home.activity.WebActivity;
+import com.example.yanx.mvp.details.DetailsActivity;
 
 import java.util.ArrayList;
 
@@ -51,8 +51,8 @@ public class ChannelDTOAdapter extends DelegateAdapter.Adapter<ChannelDTOAdapter
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, WebActivity.class);
-                intent.putExtra("url",bean.getUrl());
+                Intent intent = new Intent(activity, DetailsActivity.class);
+                intent.putExtra("id",bean.getCategoryid()+"");
                 activity.startActivity(intent);
             }
         });

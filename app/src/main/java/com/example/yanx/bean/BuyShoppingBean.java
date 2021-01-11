@@ -217,19 +217,19 @@ public class BuyShoppingBean {
             private int sort_order;
             private int is_delete;
             private int attribute_category;
-            private int counter_price;
-            private int extra_price;
+            private String counter_price;
+            private String extra_price;
             private int is_new;
             private String goods_unit;
             private String primary_pic_url;
             private String list_pic_url;
-            private int retail_price;
+            private String retail_price;
             private int sell_volume;
             private int primary_product_id;
-            private int unit_price;
+            private String unit_price;
             private String promotion_desc;
             private String promotion_tag;
-            private int app_exclusive_price;
+            private String app_exclusive_price;
             private int is_app_exclusive;
             private int is_limited;
             private int is_hot;
@@ -346,19 +346,19 @@ public class BuyShoppingBean {
                 this.attribute_category = attribute_category;
             }
 
-            public int getCounter_price() {
+            public String getCounter_price() {
                 return counter_price;
             }
 
-            public void setCounter_price(int counter_price) {
+            public void setCounter_price(String counter_price) {
                 this.counter_price = counter_price;
             }
 
-            public int getExtra_price() {
+            public String getExtra_price() {
                 return extra_price;
             }
 
-            public void setExtra_price(int extra_price) {
+            public void setExtra_price(String extra_price) {
                 this.extra_price = extra_price;
             }
 
@@ -394,11 +394,11 @@ public class BuyShoppingBean {
                 this.list_pic_url = list_pic_url;
             }
 
-            public int getRetail_price() {
+            public String getRetail_price() {
                 return retail_price;
             }
 
-            public void setRetail_price(int retail_price) {
+            public void setRetail_price(String retail_price) {
                 this.retail_price = retail_price;
             }
 
@@ -418,11 +418,11 @@ public class BuyShoppingBean {
                 this.primary_product_id = primary_product_id;
             }
 
-            public int getUnit_price() {
+            public String getUnit_price() {
                 return unit_price;
             }
 
-            public void setUnit_price(int unit_price) {
+            public void setUnit_price(String unit_price) {
                 this.unit_price = unit_price;
             }
 
@@ -442,11 +442,11 @@ public class BuyShoppingBean {
                 this.promotion_tag = promotion_tag;
             }
 
-            public int getApp_exclusive_price() {
+            public String getApp_exclusive_price() {
                 return app_exclusive_price;
             }
 
-            public void setApp_exclusive_price(int app_exclusive_price) {
+            public void setApp_exclusive_price(String app_exclusive_price) {
                 this.app_exclusive_price = app_exclusive_price;
             }
 
@@ -595,7 +595,7 @@ public class BuyShoppingBean {
             private String goods_specification_ids;
             private String goods_sn;
             private int goods_number;
-            private int retail_price;
+            private String retail_price;
 
             public int getId() {
                 return id;
@@ -637,11 +637,11 @@ public class BuyShoppingBean {
                 this.goods_number = goods_number;
             }
 
-            public int getRetail_price() {
+            public String getRetail_price() {
                 return retail_price;
             }
 
-            public void setRetail_price(int retail_price) {
+            public void setRetail_price(String retail_price) {
                 this.retail_price = retail_price;
             }
         }

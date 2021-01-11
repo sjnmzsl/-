@@ -18,7 +18,7 @@ import java.util.concurrent.locks.Lock;
 
 
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements BaseView{
-    protected P mPresenter;
+    public P mPresenter;
     protected View view;
     protected String TAG="TAG";
 

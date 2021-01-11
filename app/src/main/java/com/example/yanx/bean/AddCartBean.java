@@ -110,6 +110,17 @@ public class AddCartBean {
         }
 
         public static class CartListDTO {
+            @Override
+            public String toString() {
+                return "CartListDTO{" +
+                        "id=" + id +
+                        ", user_id=" + user_id +
+                        ", session_id='" + session_id + '\'' +
+
+                        ", goods_name='" + goods_name + "\n";
+
+            }
+
             /**
              * id : 1962
              * user_id : 7
@@ -127,6 +138,8 @@ public class AddCartBean {
              * list_pic_url : http://yanxuan.nosdn.127.net/d7d6ef1f1865991077384761b4521dce.png
              */
 
+
+
             private Integer id;
             private Integer user_id;
             private String session_id;
@@ -134,8 +147,8 @@ public class AddCartBean {
             private String goods_sn;
             private Integer product_id;
             private String goods_name;
-            private Integer market_price;
-            private Integer retail_price;
+            private String market_price;
+            private String retail_price;
             private Integer number;
             private String goods_specifition_name_value;
             private String goods_specifition_ids;
@@ -198,19 +211,19 @@ public class AddCartBean {
                 this.goods_name = goods_name;
             }
 
-            public Integer getMarket_price() {
+            public String getMarket_price() {
                 return market_price;
             }
 
-            public void setMarket_price(Integer market_price) {
+            public void setMarket_price(String market_price) {
                 this.market_price = market_price;
             }
 
-            public Integer getRetail_price() {
+            public String getRetail_price() {
                 return retail_price;
             }
 
-            public void setRetail_price(Integer retail_price) {
+            public void setRetail_price(String retail_price) {
                 this.retail_price = retail_price;
             }
 

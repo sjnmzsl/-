@@ -52,8 +52,6 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
                 .add(R.id.fralayout_Home,specialFragment)
                 .add(R.id.fralayout_Home,directoryFragment)
                 .add(R.id.fralayout_Home, cartFragment)
-                .setMaxLifecycle(directoryFragment, Lifecycle.State.CREATED)
-                .setMaxLifecycle(cartFragment, Lifecycle.State.CREATED)
                 .show(homeFragment)
                 .hide(specialFragment)
                 .hide(directoryFragment)
@@ -69,7 +67,14 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
             case 3:
 //                raCart.setSelected(true);
 //                raCart.setChecked(true);
-                raCart.setPressed(true);
+//                raCart.setPressed(true);
+//                raCart.setClickable(true);
+                fragmentManager.beginTransaction()
+                        .hide(homeFragment)
+                        .hide(specialFragment)
+                        .hide(directoryFragment)
+                        .show(cartFragment)
+                        .commit();
                 break;
         }
         super.onResume();
@@ -126,7 +131,6 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
                         .hide(homeFragment)
                         .hide(specialFragment)
                         .show(directoryFragment)
-                        .setMaxLifecycle(directoryFragment, Lifecycle.State.RESUMED)
                         .hide(cartFragment)
                         .commit();
                 break;
@@ -135,7 +139,6 @@ public class HomeActivity extends BaseActivity<HomeFraPresenter> implements View
                         .hide(homeFragment)
                         .hide(specialFragment)
                         .hide(directoryFragment)
-                        .setMaxLifecycle(cartFragment, Lifecycle.State.RESUMED)
                         .show(cartFragment)
                         .commit();
                 break;
